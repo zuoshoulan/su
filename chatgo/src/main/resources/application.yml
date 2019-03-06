@@ -1,0 +1,13 @@
+spring:
+  redis:
+    database: 9
+    host: test.limaiot.com
+    lettuce:
+      pool:
+        max-active: '8'
+        max-idle: '8'
+        max-wait: '-1'
+        min-idle: '0'
+    password: qaz123
+    port: 6479
+    timeout: '10000'
