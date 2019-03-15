@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/sockjs.js"></script>
+<script type="text/javascript" src="./js/stomp.min.js"></script>
+
+<html>
+<body>
+<h2>Hello STOMP!</h2>
+</body>
+<script type="text/javascript"  charset="UTF-8">
+/*STOMP*/
+// var url = 'http://localhost:18801/ws';
+var url = 'http://localhost:8080/client';
+var sock = new SockJS(url);
+var stomp = Stomp.over(sock);
+
+var strJson = JSON.stringify({'message': 'hello,lwk!'});
+
+//默认的和STOMP端点连接
+/*stomp.connect("guest", "guest", function (franme) {
+
+});*/
+
+var headers={
+    temKey:'123456789'
+};
+
+stomp.connect(headers, function (frame) {
+
+    //发送消息
+    //第二个参数是一个头信息的Map，它会包含在STOMP的帧中
+    //事务支持
+    var tx = stomp.begin();
+    stomp.send("/app/marco", {transaction: tx.id}, strJson);
+    tx.commit();
+
+
+    stomp.subscribe("/topic/marco", function (message) {
+        var content = message.body;
+        var obj = JSON.parse(content);
+        console.log("订阅的服务端消息topic xixixi：" + obj.message);
+    }, {});
+	
+	
+	stomp.subscribe("/user/topic/marco", function (message) {
+        var content = message.body;
+        var obj = JSON.parse(content);
+        console.log("订阅的服务端消息user xixixi：" + obj.message);
+    }, {});
+	
+	stomp.subscribe("/app/getShout", function (message) {
+        var content = message.body;
+        console.log("订阅的服务端直接返回的消息：" + message.body);
+    }, {});
+
+    
+});
+
+</script>
+
+</html>

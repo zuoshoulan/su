@@ -1,0 +1,32 @@
+# admin登录的用户名和密码
+spring:
+  profiles: secure
+  security:
+    user:
+      name: "ulwk@test"
+      password: "mima@test"
+
+# 2.0开始，actuator默认不开放，所以要设置为开放
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    leaseExpirationDurationInSeconds: 30
+    leaseRenewalIntervalInSeconds: 10
+    prefer-ip-address: true
+    # 注册给eureka的时候告诉eureka自己的密码
+    metadata-map:
+      "user.name": ${spring.security.user.name}         #These two are needed so that the server
+      "user.password": ${spring.security.user.password} #can access the protected client endpoints

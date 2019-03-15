@@ -1,4 +1,4 @@
-package com.su.chatgo.netty;
+package com.su.chatgo.netty.websocket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -62,11 +62,8 @@ public class NettyServer {
                                 ChannelPipeline pipeline = channel.pipeline();
                                 pipeline.addLast(new HttpServerCodec());
                                 pipeline.addLast("http-chunked", new ChunkedWriteHandler());
-
                                 pipeline.addLast(new HttpObjectAggregator(8192));
-
-                                pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
-
+                                pipeline.addLast(new WebSocketServerProtocolHandler("/websocket"));
                                 pipeline.addLast(new WebSocketHandler(redisTemplate));
 
                             }

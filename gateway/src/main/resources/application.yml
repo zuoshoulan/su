@@ -1,12 +1,23 @@
-management:
-  endpoint:
-    health:
-      show-details: ALWAYS
-    gateway:
+#management:
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
+#    gateway:
+#      enabled: true
+#    web:
+#      exposure:
+#        include: "*"
+#  health:
+#    diskspace:
+#      threshold: 1048576000
+
+eureka:
+  client:
+    healthcheck:
       enabled: true
-    web:
-      exposure:
-        include: "*"
-  health:
-    diskspace:
-      threshold: 1048576000
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    leaseExpirationDurationInSeconds: 30
+    leaseRenewalIntervalInSeconds: 10
+    prefer-ip-address: true

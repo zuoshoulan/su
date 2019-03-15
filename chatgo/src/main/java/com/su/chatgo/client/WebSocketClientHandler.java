@@ -1,6 +1,8 @@
-package com.su.chatgo.netty;
+package com.su.chatgo.client;
 
 import com.su.chatgo.Consts;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -15,17 +17,22 @@ import java.util.concurrent.TimeUnit;
  * @Author Weikang Lan
  * @Created 2019-03-06 00:30
  */
-public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+public class WebSocketClientHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
-    WebSocketHandler(RedisTemplate redisTemplate) {
-        super();
-        this.redisTemplate = redisTemplate;
+    private final ByteBuf firstMessage;
+    protected Logger logger = LoggerFactory.getLogger(WebSocketClientHandler.class);
+
+    public WebSocketClientHandler() {
+        firstMessage = Unpooled.buffer(256);
+        for (int i = 0; i < firstMessage.capacity(); i++) {
+            firstMessage.writeByte((byte) i);
+        }
     }
 
-
-    protected Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
-
-    private RedisTemplate redisTemplate;
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        ctx.writeAndFlush(firstMessage);
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
@@ -35,13 +42,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
         channelHandlerContext.writeAndFlush(textWebSocketFrame1);
 
         String key = Consts.prefix + channelHandlerContext.channel().toString();
-
-        redisTemplate.opsForValue().set(key, ZonedDateTime.now().toString());
-        redisTemplate.expire(key, 30, TimeUnit.MINUTES);
-
-        Object value = redisTemplate.opsForValue().get(key);
-        logger.info("value {}", value);
-
 
     }
 }
