@@ -6,6 +6,9 @@
     <groupId>com.su</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>algorithm</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>demo</name>
