@@ -1,0 +1,85 @@
+#nacos注册中心和配置中心
+#local
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    nacos:
+      discovery:
+        server-addr: mse-b6df11b0-p.nacos-ans.mse.aliyuncs.com:8848
+        namespace: 15fa5d6c-8677-43e0-aaff-1ceee875ab14
+      config:
+        server-addr: mse-b6df11b0-p.nacos-ans.mse.aliyuncs.com:8848
+        namespace: 15fa5d6c-8677-43e0-aaff-1ceee875ab14
+        file-extension: yaml
+        prefix: gateway-local
+
+---
+#dev
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: mse-b6df11b0-nacos-ans.mse.aliyuncs.com:8848
+        namespace: 42b39443-15c3-4e65-acb9-48edde86ffce
+      config:
+        server-addr: mse-b6df11b0-nacos-ans.mse.aliyuncs.com:8848
+        namespace: 42b39443-15c3-4e65-acb9-48edde86ffce
+        file-extension: yaml
+        prefix: gateway-dev
+
+---
+#test
+spring:
+  config:
+    activate:
+      on-profile: test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: mse-6889ad30-nacos-ans.mse.aliyuncs.com:8848
+        namespace: 5d97d06b-fc6e-4a7b-a31a-164e17d10c5c
+      config:
+        server-addr: mse-6889ad30-nacos-ans.mse.aliyuncs.com:8848
+        namespace: 5d97d06b-fc6e-4a7b-a31a-164e17d10c5c
+        file-extension: yaml
+        prefix: gateway-test
+
+
+---
+#pre
+spring:
+  config:
+    activate:
+      on-profile: pre
+  cloud:
+    nacos:
+      discovery:
+        server-addr: mse-d6de7030-nacos-ans.mse.aliyuncs.com:8848
+        namespace: befe7336-9d5c-4077-bf9e-693d4ea4db6a
+      config:
+        server-addr: mse-d6de7030-nacos-ans.mse.aliyuncs.com:8848
+        namespace: befe7336-9d5c-4077-bf9e-693d4ea4db6a
+        file-extension: yaml
+        prefix: gateway-pre
+
+---
+#prod
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    nacos:
+      discovery:
+        server-addr: mse-94b3ae70-nacos-ans.mse.aliyuncs.com:8848
+        namespace: b33876c3-5724-4cc6-8e6d-e28653b16754
+      config:
+        server-addr: mse-94b3ae70-nacos-ans.mse.aliyuncs.com:8848
+        namespace: b33876c3-5724-4cc6-8e6d-e28653b16754
+        file-extension: yaml
+        prefix: gateway-prod

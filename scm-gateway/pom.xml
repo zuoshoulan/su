@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gateway</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>gateway-router</module>
+        <module>gateway-deploy</module>
+        <module>gateway-management</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.cpp.supplychain</groupId>
+        <artifactId>framework-bom</artifactId>
+        <version>1.2-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <version.java-jwt>3.19.0</version.java-jwt>
+        <version.bss-commons>1.1-SNAPSHOT</version.bss-commons>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.cpp.supplychain</groupId>
+                <artifactId>bss-commons</artifactId>
+                <version>${version.bss-commons}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${version.java-jwt}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

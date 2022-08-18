@@ -1,0 +1,6 @@
+FROM cpp-acr-registry.cn-shanghai.cr.aliyuncs.com/default/openjdk11:v2
+MAINTAINER "xiaoteng"<wxt_secure_mail@163.com>
+RUN mkdir /app
+WORKDIR /app
+COPY ./gateway-deploy/target/gateway-deploy.jar  /app
+EXPOSE 80

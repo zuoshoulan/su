@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+
+    <!--        <include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+
+    <!-- 变量定义 -->
+    <property name="application-name" value="gateway"/>
+    <property name="log-base-path" value="${log-base-path:-/www/logs}"/>
+    <property name="log-path" value="${log-base-path}/${application-name}"/>
+    <property name="max-history" value="7"/>
+    <!--    2020-09-22 11:15:10.120  [scheduling-1][] WARN  [LockSimpleTemplate.java:93] - lockKey:payment-trade-lock:RefundStatusPollingJob, kockId:163712, 已被锁定-->
+    <!--    %d{yyyy-MM-dd HH:mm:ss.SSS} %X{trace_id} [%thread][%X{sessionTokenId}] %-5level [%file:%line] - %msg%n-->
+    <property name="encoder-pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{EagleEye-TraceID}] [%X{scm-trace-id}] [%thread] [%-5level] [%file:%line] - %msg%n"/>
+
+    <!-- 标准输出配置 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${encoder-pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件输出配置 -->
+    <appender name="file_out" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log-path}/service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log-path}/service.log.%d{yyyyMMdd}.%i
+            </fileNamePattern>
+            <maxHistory>${max-history}</maxHistory>
+            <maxFileSize>500MB</maxFileSize>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${encoder-pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 定时任务输出配置 -->
+    <appender name="task_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log-path}/task.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log-path}/task.log.%d{yyyyMMdd}.%i
+            </fileNamePattern>
+            <maxHistory>${max-history}</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>50MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${encoder-pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder" level="debug">
+
+    </logger>
+
+    <logger name="com.cpp.supplychain.gateway.router.task" level="info" additivity="false">
+        <appender-ref ref="task_file"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="file_out"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

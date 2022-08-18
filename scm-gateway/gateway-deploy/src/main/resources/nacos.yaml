@@ -1,0 +1,71 @@
+server:
+  #端口
+  port: 10000
+spring:
+  cloud:
+    gateway:
+      # 路由配置
+      routes:
+        # mp-web
+        - id: mp-web
+          uri: lb://mp-web
+          predicates:
+            - Path=/mp-web/**
+
+        # mp-web-RewritePath
+        - id: mp-web-RewritePath
+          uri: lb://mp-web
+          predicates:
+            - Path=/api-app/**
+          filters:
+            - RemoveRequestHeader=SC-User-Id
+            - AppAuth
+            - RewritePath=/api-app/(?<segment>.*), /mp-web/$\{segment}
+
+
+
+        # business-web
+        - id: business-web
+          uri: lb://business-web
+          predicates:
+            - Path=/business-web/**
+
+        # business-web-RewritePath
+        - id: business-web-RewritePath
+          uri: lb://business-web
+          predicates:
+            - Path=/api-portal/**
+          filters:
+            - PortalAuth
+            - RewritePath=/api-portal/(?<segment>.*), /business-web/$\{segment}
+
+        # open-api-RewritePath
+        - id: open-api-RewritePath
+          uri: lb://open-api
+          predicates:
+            - Path=/api-open/**
+          filters:
+            - OpenApiAuth
+            - RewritePath=/api-open/(?<segment>.*), /open-api/$\{segment}
+
+---
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          # 匹配所有请求
+          '[/**]':
+            # 跨域处理 允许所有的域
+            allowedOrigins: "*"
+            # 支持的方法
+            allowedMethods: "*"
+            allowedHeaders: "*"
+---
+spring:
+  r2dbc:
+    url: r2dbcs:mysql://rm-uf6470g3aqdt4n4ceho.mysql.rds.aliyuncs.com:3306/sc_auth?SSL=false&sslMode=DISABLED&useUnicode=true&useSSL=false&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+    username: cpp_scm_local_dml
+    password: Ri1Njh0HrcH5qI2kCT1r
+
+
