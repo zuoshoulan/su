@@ -6,5 +6,5 @@ package com.su.algo;
  */
 public interface ArrSortInterface {
 
-    void sort(int[] arr);
+    int[] sort(int[] arr);
 }

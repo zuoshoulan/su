@@ -59,7 +59,8 @@ public class InsertArrSort implements ArrSortInterface {
     }
 
     @Override
-    public void sort(int[] arr) {
+    public int[] sort(int[] arr) {
         sort1(arr);
+        return arr;
     }
 }

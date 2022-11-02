@@ -19,7 +19,7 @@ public class PopArrSort implements ArrSortInterface {
     }
 
     @Override
-    public void sort(int[] arr) {
+    public int[] sort(int[] arr) {
         for (int j = 0; j < arr.length - 1; j++) {
             for (int i = 0; i < arr.length - j - 1; i++) {
                 if (arr[i] > arr[i + 1]) {
@@ -29,5 +29,6 @@ public class PopArrSort implements ArrSortInterface {
                 }
             }
         }
+        return arr;
     }
 }
