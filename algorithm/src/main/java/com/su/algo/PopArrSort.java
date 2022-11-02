@@ -4,11 +4,11 @@ package com.su.algo;
  * @author zhengweikang@hz-cpp.com
  * @Date 2022/7/29 01:11
  */
-public class PopSort implements SortInterface {
+public class PopArrSort implements ArrSortInterface {
 
 
     public static void main(String[] args) {
-        PopSort popSort = new PopSort();
+        PopArrSort popSort = new PopArrSort();
         int[] arr = {10, 14, 11, 9, 15, 20, 3, 5, 2, 1, 0, 34, 43, 4};
         popSort.sort(arr);
         for (int i : arr) {

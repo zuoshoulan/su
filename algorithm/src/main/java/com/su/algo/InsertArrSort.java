@@ -6,7 +6,7 @@ package com.su.algo;
  * @author zhengweikang@hz-cpp.com
  * @Date 2022/8/3 16:48
  */
-public class InsertSort implements SortInterface {
+public class InsertArrSort implements ArrSortInterface {
 
     public static int[] arr = {5, 4, 3, 1, 2, 9, 8, 6, 7, 0};
 
