@@ -1,10 +1,12 @@
 package com.su.algo;
 
 /**
+ * 插入排序，左边是有序序列，右边是无序序列，把无序序列中的元素一次放入有序序列并使其最终有序的排序方式
+ *
  * @author zhengweikang@hz-cpp.com
  * @Date 2022/8/3 16:48
  */
-public class InsertSort {
+public class InsertSort implements SortInterface {
 
     public static int[] arr = {5, 4, 3, 1, 2, 9, 8, 6, 7, 0};
 
@@ -54,5 +56,10 @@ public class InsertSort {
         sort1(arr);
         System.out.println("---");
         Utils.printArr(arr);
+    }
+
+    @Override
+    public void sort(int[] arr) {
+        sort1(arr);
     }
 }
