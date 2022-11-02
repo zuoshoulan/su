@@ -12,4 +12,19 @@ public class Utils {
         arr[left] = arr[right];
         arr[right] = temp;
     }
+
+    public static void printArr(int[] arr) {
+        printArr(arr, 0, arr.length);
+    }
+
+    public static void printArr(int[] arr, int startInclusive, int endExclusive) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("arr:");
+        sb.append("[");
+        for (int i = startInclusive; i < endExclusive; i++) {
+            sb.append(arr[i]).append(" ");
+        }
+        sb.append("]");
+        System.out.println(sb);
+    }
 }
