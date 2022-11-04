@@ -1,5 +1,9 @@
 package com.su.algo;
 
+/**
+ * 归并排序
+ * todo 使用非递归方式实现一遍
+ */
 public class MergeSort implements ArrSortInterface {
 
     public static int[] arr0 = {5, 4, 3, 1, 2, 9, 8, 6, 7, 0};
