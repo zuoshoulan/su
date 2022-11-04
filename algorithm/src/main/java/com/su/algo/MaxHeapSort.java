@@ -1,5 +1,9 @@
 package com.su.algo;
 
+/**
+ * 堆排序
+ * todo 建堆和调整堆的过程可以用递归和非递归方式再次实现一边
+ */
 public class MaxHeapSort implements ArrSortInterface {
 
     public static int[] arr0 = {5, 4, 3, 1, 2, 9, 8, 6, 7, 0};
