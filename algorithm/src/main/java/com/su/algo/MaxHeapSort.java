@@ -2,7 +2,8 @@ package com.su.algo;
 
 /**
  * 堆排序
- * todo 建堆和调整堆的过程可以用递归和非递归方式再次实现一边
+ * todo 建堆和调整堆的过程可以用递归和非递归方式再次实现一遍
+ *  子树变换再实现一遍
  */
 public class MaxHeapSort implements ArrSortInterface {
 
