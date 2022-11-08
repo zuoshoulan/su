@@ -35,13 +35,17 @@ public class FibonacciSeq {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            int n = i;
-            int seq = getFibonacciRecursion(n);
-            System.out.println("Recursion n=" + n + " ,seq=" + seq);
-            int seq1 = getFibonacci(n);
-            System.out.println("seq n=" + n + " ,seq=" + seq1);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            int n = i;
+//            int seq = getFibonacciRecursion(n);
+//            System.out.println("Recursion n=" + n + " ,seq=" + seq);
+//            int seq1 = getFibonacci(n);
+//            System.out.println("seq n=" + n + " ,seq=" + seq1);
+//        }
+
+        Integer i = 19990;
+        int j = 19990;
+        System.out.println(i==j);
 
     }
 }
