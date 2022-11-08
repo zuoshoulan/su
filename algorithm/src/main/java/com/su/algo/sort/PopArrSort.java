@@ -1,6 +1,6 @@
-package com.su.algo;
+package com.su.algo.sort;
 
-import javax.rmi.CORBA.Util;
+import com.su.algo.Utils;
 
 /**
  * @author zhengweikang@hz-cpp.com

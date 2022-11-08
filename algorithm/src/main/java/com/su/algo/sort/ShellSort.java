@@ -1,4 +1,6 @@
-package com.su.algo;
+package com.su.algo.sort;
+
+import com.su.algo.sort.ArrSortInterface;
 
 public class ShellSort implements ArrSortInterface {
 

@@ -1,4 +1,7 @@
-package com.su.algo;
+package com.su.algo.sort;
+
+import com.su.algo.Utils;
+import com.su.algo.sort.ArrSortInterface;
 
 /**
  * 插入排序，左边是有序序列，右边是无序序列，把无序序列中的元素一次放入有序序列并使其最终有序的排序方式

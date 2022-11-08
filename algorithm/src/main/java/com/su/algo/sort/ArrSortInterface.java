@@ -1,4 +1,4 @@
-package com.su.algo;
+package com.su.algo.sort;
 
 /**
  * @author zhengweikang@hz-cpp.com

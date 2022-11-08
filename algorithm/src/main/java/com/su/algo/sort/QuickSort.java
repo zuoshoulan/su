@@ -1,4 +1,6 @@
-package com.su.algo;
+package com.su.algo.sort;
+
+import com.su.algo.Utils;
 
 /**
  * @author zhengweikang@hz-cpp.com
