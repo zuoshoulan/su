@@ -52,10 +52,37 @@ public class RabinKarpMatch implements StringMatchInterface {
     }
 
     public static void main(String[] args) {
-        RabinKarpMatch rabinKarpMatch = new RabinKarpMatch();
-        System.out.println(text0.length());
+//        RabinKarpMatch rabinKarpMatch = new RabinKarpMatch();
+//        System.out.println(text0.length());
+//        System.out.println("---");
+//        int offset = rabinKarpMatch.firstMatch(text0, "igk");
+//        System.out.println("offset:" + offset);
+
+//        String text = "3141592653589793";
+//
+//        String pattern = "26";
+//        for (int i = 0; i < text.length() - pattern.length() + 1; i++) {
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(text.charAt(i));
+//            sb.append(text.charAt(i + 1));
+//            int tmp = Integer.valueOf(sb.toString());
+//            System.out.println("tmp:" + tmp + " , " + tmp % 11);
+//        }
+
+
+        System.out.println(30000 % 13);
+        System.out.println(1000 % 13);
+        System.out.println(400 % 13);
+        System.out.println(10 % 13);
+        System.out.println(5);
         System.out.println("---");
-        int offset = rabinKarpMatch.firstMatch(text0, "igk");
-        System.out.println("offset:" + offset);
+        System.out.println((9 + 12 + 10 + 10 + 5));
+        System.out.println((9 + 12 + 10 + 10 + 5) % 13);
+        System.out.println("---");
+        System.out.println((-20 % 13));
+
+        System.out.println(110 % 13);
+
+
     }
 }
