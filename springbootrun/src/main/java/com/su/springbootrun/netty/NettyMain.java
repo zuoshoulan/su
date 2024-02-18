@@ -36,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @Slf4j
 public class NettyMain {
+    private static final int PORT = 8888; // 监听的端口
 
     public static void main(String[] args) {
         NettyMain nettyMain = new NettyMain();
@@ -127,7 +128,7 @@ public class NettyMain {
 //                }
 //            }).start();
 
-            ChannelFuture channelFuture = bootstrap.bind(8888);
+            ChannelFuture channelFuture = bootstrap.bind(PORT);
             serverChannel = channelFuture.channel();
             channelFuture.addListener((ChannelFutureListener) future -> {
                 if (channelFuture.isSuccess()) {
