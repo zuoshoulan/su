@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class MainTest {
 
+    /**
+     * 主流程测试
+     */
     @Test
     public void testMain() {
         RangeList rangeList = new RangeList();

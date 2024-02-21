@@ -17,6 +17,9 @@ import java.util.Set;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RangeTest {
 
+    /**
+     * @see Range#Range(int, int)
+     */
     @DisplayName("构造函数")
     @SneakyThrows
     @Order(-1)
@@ -26,6 +29,9 @@ public class RangeTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Range(3, 2));
     }
 
+    /**
+     * @see Range#toString()
+     */
     @DisplayName("toString函数")
     @SneakyThrows
     @Order(0)
@@ -37,6 +43,9 @@ public class RangeTest {
         Assertions.assertEquals("[3, 3)", range1.toString());
     }
 
+    /**
+     * @see Range#hashCode()
+     */
     @DisplayName("hashCode函数")
     @SneakyThrows
     @Order(1)
@@ -72,7 +81,9 @@ public class RangeTest {
 
     }
 
-
+    /**
+     * @see Range#equals(Object)
+     */
     @DisplayName("equals函数")
     @SneakyThrows
     @Order(2)
@@ -88,6 +99,9 @@ public class RangeTest {
         Assertions.assertNotEquals(range2, range3);
     }
 
+    /**
+     * @see Range#containsValue(int)
+     */
     @DisplayName("是否包含某值")
     @SneakyThrows
     @Order(3)
@@ -105,6 +119,9 @@ public class RangeTest {
         Assertions.assertFalse(range1.containsValue(9));
     }
 
+    /**
+     * @see Range#attract(Range)
+     */
     @DisplayName("吸纳另一个range")
     @SneakyThrows
     @Order(4)

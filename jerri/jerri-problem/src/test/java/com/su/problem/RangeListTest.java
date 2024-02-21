@@ -12,6 +12,10 @@ import java.util.Set;
 @Slf4j
 public class RangeListTest {
 
+    /**
+     * @see RangeList#add(Range)
+     * @see RangeList#toString()
+     */
     @DisplayName("add和toString函数")
     @Order(0)
     @Test
@@ -69,6 +73,9 @@ public class RangeListTest {
 
     }
 
+    /**
+     * @see RangeList#hashCode()
+     */
     @DisplayName("hashCode函数")
     @Order(1)
     @Test
@@ -99,6 +106,9 @@ public class RangeListTest {
         Assertions.assertTrue(set.size() >= 5);
     }
 
+    /**
+     * @see RangeList#equals(Object)
+     */
     @DisplayName("equals函数")
     @Order(2)
     @Test
@@ -111,7 +121,9 @@ public class RangeListTest {
         Assertions.assertNotEquals(rangeList1, rangeList2);
     }
 
-
+    /**
+     * @see RangeList#remove(Range)
+     */
     @DisplayName("remove函数")
     @Order(3)
     @Test
