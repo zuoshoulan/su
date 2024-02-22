@@ -14,6 +14,13 @@ import java.util.List;
 public class RangeUtilTest {
 
     /**
+     * 两个range的差集
+     * 1.全部减完，没有剩下的range
+     * 2.剩下两个range
+     * 3.剩下左边一部分
+     * 4.两个没有重合的range，没有减掉，全部剩下来
+     * 5.有空集参与计算的，报错
+     *
      * @see RangeUtil#subRange(Range, Range)
      */
     @DisplayName("两个range差集")
@@ -29,11 +36,13 @@ public class RangeUtilTest {
         Range sub6 = new Range(3, 10);
         Range sub7 = new Range(1, 20);
         Range sub8 = new Range(3, 9);
+        //剩下两个range
         List<Range> remainder1 = RangeUtil.subRange(range, sub1);
         log.info("原始range:{} sub:{} ,结果是:{}", range, sub1, remainder1);
         Assertions.assertEquals(remainder1.size(), 2);
         Assertions.assertEquals(remainder1.get(0), new Range(3, 5));
         Assertions.assertEquals(remainder1.get(1), new Range(7, 10));
+
         List<Range> remainder2 = RangeUtil.subRange(range, sub2);
         log.info("原始range:{} sub:{} ,结果是:{}", range, sub2, remainder2);
         Assertions.assertEquals(remainder2.size(), 1);
@@ -60,6 +69,9 @@ public class RangeUtilTest {
         log.info("原始range:{} sub:{} ,结果是:{}", range, sub8, remainder8);
         Assertions.assertEquals(remainder8.size(), 1);
         Assertions.assertEquals(remainder8.get(0), new Range(9, 10));
+
+        Assertions.assertThrows(Throwable.class, () -> RangeUtil.subRange(range, new Range(3, 3)));
+        Assertions.assertThrows(Throwable.class, () -> RangeUtil.subRange(new Range(3, 3), range));
 
     }
 }
