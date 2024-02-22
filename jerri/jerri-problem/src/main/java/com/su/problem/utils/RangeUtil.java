@@ -6,7 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RangeUtil {
-
+    /**
+     * 数据检查
+     * 要求range必须包含元素
+     *
+     * @param range
+     */
     public static void checkRangeValExisted(Range range) {
         assert range != null;
         assert range.size() > 0;
@@ -50,7 +55,7 @@ public class RangeUtil {
             return list;
         }
         /**
-         * 搭配 {@link com.su.problem.RangeList} 来，因为RangeList已经把全部剩下的情况排除了，所以放在最后判断，但是为了代码完整性，需要有这段逻辑
+         * 搭配 {@link com.su.problem.RangeList#remove(Range)} 来，因为remove方法已经把全部剩下的情况排除了，所以放在最后判断，但是为了代码完整性，需要有这段逻辑
          * 两个没有重合的range，没有减掉，全部剩下来
          */
         if (subtrahend.getValGe() >= minuend.getValLt() || subtrahend.getValLt() <= minuend.getValGe()) {
@@ -58,7 +63,7 @@ public class RangeUtil {
             return list;
         }
         //理论上不应该执行到这里来
-        throw new RuntimeException("");
+        throw new RuntimeException("error");
     }
 
 }

@@ -39,8 +39,8 @@ public class RangeList {
      * 构造空list
      */
     public RangeList() {
-        head.setNext(tail);
-        tail.setPrev(head);
+        head.next = tail;
+        tail.prev = head;
     }
 
     /**
@@ -83,7 +83,7 @@ public class RangeList {
             }
             //遇到了该插入的地方就提前结束循环
             if (tmpRange.getValLt() < baseNode.item.getValGe()) {
-                addBefore0(baseNode, new Node(null, attract, null));
+                addBefore0(baseNode, new Node(attract));
                 resloved = true;
                 break;
             }
@@ -93,7 +93,7 @@ public class RangeList {
          * 2.后面没有节点比它大
          */
         if (!resloved) {
-            Node node = new Node(null, tmpRange, null);
+            Node node = new Node(tmpRange);
             addLast0(node);
         }
         return this;
@@ -131,7 +131,7 @@ public class RangeList {
 
             List<Range> rangeList = RangeUtil.subRange(item, range);
             for (Range range1 : rangeList) {
-                Node node = new Node(null, range1, null);
+                Node node = new Node(range1);
                 addBefore0(baseNode, node);
             }
             remove0(baseNode);
@@ -262,27 +262,31 @@ public class RangeList {
     }
 
     /**
-     * 普通节点
+     * 普通节点，用于构建双链表节点
      */
-    private class Node<E> {
-        @Setter
-        @Getter
-        E item;
-        @Setter
-        @Getter
-        Node<E> next;
-        @Setter
-        @Getter
-        Node<E> prev;
+    private class Node<Range> {
+
+        /**
+         * 节点包含的元素
+         */
+        Range item;
+        /**
+         * 下一个node
+         */
+        Node<Range> next;
+        /**
+         * 上一个node
+         */
+        Node<Range> prev;
 
         Node() {
         }
 
-        Node(E element) {
+        Node(Range element) {
             this(null, element, null);
         }
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(Node<Range> prev, Range element, Node<Range> next) {
             this.item = element;
             this.next = next;
             this.prev = prev;
